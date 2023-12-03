@@ -110,10 +110,10 @@ export default function Homepage({ data }) {
   return (
     <NextUIProvider>
       <div className="absolute inset-0">
-        <main className="dark text-foreground bg-background flex min-h-screen flex-col items-center justify-between ">
+        <main className="dark text-foreground bg-background flex min-h-[calc(100dvh)] flex-col items-center justify-between ">
           <Gradient
             className={
-              "flex flex-col justify-center items-center p-8 text-center gap-8"
+              "w-screen h-screen flex flex-col justify-center items-center p-8 text-center gap-8"
             }
           >
             <h1 className="text-5xl mb-4 text-transparent leading-tight font-semibold bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
