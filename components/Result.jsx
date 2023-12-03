@@ -41,7 +41,7 @@ const Result = ({ planet, dayDiff }) => {
       </Tooltip>
       <div>
         <p className="inline text-2xl font-semibold">
-          You&apos;re {yearsOld} years old in&nbsp;
+          You&apos;re {yearsOld} years old on &nbsp;
         </p>
         <p className="inline text-2xl font-semibold underline hover:text-sky-500 decoration-wavy decoration-sky-500">
           <a target="_blank" rel="noopener noreferrer" href={link}>
