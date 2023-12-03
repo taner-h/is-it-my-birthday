@@ -34,8 +34,8 @@ const Result = ({ planet, dayDiff }) => {
         </p>
       </div>
       <p className="text-lg font-medium">
-        (A {planet.planet_name} year is equal to {planet.orbital_period} Earth
-        days)
+        (A &quot;{planet.planet_name}&quot; year is equal to{" "}
+        {planet.orbital_period} Earth days)
       </p>
     </div>
   );
