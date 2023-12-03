@@ -3,6 +3,9 @@ import { Tooltip } from "@nextui-org/react";
 import slugify from "slugify";
 
 const Result = ({ planet, dayDiff }) => {
+  const [isTooltipOpen, setIsTooltipOpen] = React.useState(false);
+  const [isClicked, setIsClicked] = React.useState(false);
+
   const yearsOld = Math.round(dayDiff / planet.orbital_period);
   const link = `https://exoplanets.nasa.gov/eyes-on-exoplanets/#/planet/${slugify(
     planet.planet_name,
@@ -16,11 +19,24 @@ const Result = ({ planet, dayDiff }) => {
       <Tooltip
         showArrow={true}
         color="primary"
+        isOpen={isTooltipOpen}
+        onOpenChange={(open) => setIsTooltipOpen(open)}
+        onClose={() => {
+          setIsTooltipOpen(!isTooltipOpen);
+        }}
         content="It always is. Somewhere. If you know where to look."
       >
-        <h2 className="text-3xl font-semibold">
+        <h2
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsClicked(!isClicked);
+            setIsTooltipOpen(!isClicked);
+          }}
+          className="text-3xl font-semibold"
+        >
           It <i>is</i> your birthday!
           <p className="inline text-sky-500">*</p>
+          🥳
         </h2>
       </Tooltip>
       <div>
