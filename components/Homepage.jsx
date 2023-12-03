@@ -109,49 +109,54 @@ export default function Homepage({ data }) {
 
   return (
     <NextUIProvider>
-      <main className="dark text-foreground bg-background flex w-screen h-screen flex-col items-center justify-between ">
-        <Gradient
-          className={
-            "flex flex-col justify-center items-center p-8 text-center gap-8"
-          }
-        >
-          <h1 className="text-5xl mb-4 text-transparent leading-tight font-semibold bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
-            Is today my birthday?
-          </h1>
-
-          {isFound && <Result planet={planet} dayDiff={dayDiff} />}
-
-          <Input
-            size="lg"
-            type="date"
-            radius="medium"
-            value={date}
-            onValueChange={setDate}
-            variant="bordered"
-            label="Date of Birth"
-            placeholder="Enter your date of birth"
-            className="w-[300px]"
-            isInvalid={invalidInput}
-            errorMessage={
-              invalidInput
-                ? "Unless you're a time traveller, you might wanna change your input."
-                : null
+      <div className="absolute inset-0">
+        <main className="dark text-foreground bg-background flex min-h-screen flex-col items-center justify-between ">
+          <Gradient
+            className={
+              "w-screen h-screen flex flex-col justify-center items-center p-8 text-center gap-8"
             }
-            max={today}
-            fullWidth={false}
-          ></Input>
-
-          <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
-          <Button
-            color="primary"
-            variant="shadow"
-            className="w-[300px]"
-            onClick={handleClick}
           >
-            Calculate
-          </Button>
-        </Gradient>
-      </main>
+            <h1 className="text-5xl mb-4 text-transparent leading-tight font-semibold bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
+              Is today my birthday?
+            </h1>
+
+            {isFound && <Result planet={planet} dayDiff={dayDiff} />}
+
+            <Input
+              size="lg"
+              type="date"
+              radius="medium"
+              value={date}
+              onValueChange={setDate}
+              variant="bordered"
+              label="Date of Birth"
+              placeholder="Enter your date of birth"
+              className="w-[300px]"
+              isInvalid={invalidInput}
+              errorMessage={
+                invalidInput
+                  ? "Unless you're a time traveller, you might wanna change your input."
+                  : null
+              }
+              max={today}
+              fullWidth={false}
+            ></Input>
+
+            <ReactCanvasConfetti
+              refConfetti={getInstance}
+              style={canvasStyles}
+            />
+            <Button
+              color="primary"
+              variant="shadow"
+              className="w-[300px]"
+              onClick={handleClick}
+            >
+              Calculate
+            </Button>
+          </Gradient>
+        </main>
+      </div>
     </NextUIProvider>
   );
 }
