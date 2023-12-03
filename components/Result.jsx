@@ -41,7 +41,7 @@ const Result = ({ planet, dayDiff }) => {
       </Tooltip>
       <div>
         <p className="inline text-2xl font-semibold">
-          You&apos;re {yearsOld} years old on&nbsp;
+          You turned {yearsOld} years old on&nbsp;
         </p>
         <p className="inline text-2xl font-semibold underline hover:text-sky-500 decoration-wavy decoration-sky-500">
           <a target="_blank" rel="noopener noreferrer" href={link}>
@@ -50,7 +50,7 @@ const Result = ({ planet, dayDiff }) => {
         </p>
       </div>
       <p className="text-lg font-medium">
-        (A &quot;{planet.planet_name}&quot; year is equal to{" "}
+        (A year on &quot;{planet.planet_name}&quot; is equal to{" "}
         {planet.orbital_period} Earth days)
       </p>
     </div>
