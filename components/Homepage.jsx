@@ -117,7 +117,7 @@ export default function Homepage({ data }) {
             }
           >
             <h1 className="text-5xl mb-4 text-transparent leading-tight font-semibold bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
-              Is today my birthday?
+              Is it my birthday?
             </h1>
 
             {isFound && <Result planet={planet} dayDiff={dayDiff} />}
