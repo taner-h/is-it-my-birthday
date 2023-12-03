@@ -19,14 +19,15 @@ const Result = ({ planet, dayDiff }) => {
         content="It always is. Somewhere. If you know where to look."
       >
         <h2 className="text-3xl font-semibold">
-          It <i>is</i> your birthday!*
+          It <i>is</i> your birthday!
+          <p className="inline text-sky-500">*</p>
         </h2>
       </Tooltip>
       <div>
         <p className="inline text-2xl font-semibold">
           You&apos;re {yearsOld} years old in&nbsp;
         </p>
-        <p className="inline text-2xl font-semibold underline decoration-wavy decoration-sky-500">
+        <p className="inline text-2xl font-semibold underline hover:text-sky-500 decoration-wavy decoration-sky-500">
           <a target="_blank" rel="noopener noreferrer" href={link}>
             {planet.planet_name}
           </a>
