@@ -3,7 +3,7 @@ import Gradient from "@/components/Gradient";
 
 import React, { useCallback, useRef, useEffect } from "react";
 import ReactCanvasConfetti from "react-canvas-confetti";
-import { Input, NextUIProvider, Button } from "@nextui-org/react";
+import { Input, NextUIProvider, Button, Card } from "@nextui-org/react";
 import moment from "moment/moment";
 import Result from "./Result";
 import { CSSTransition } from "react-transition-group";
@@ -27,13 +27,17 @@ function findBirthday(data, days) {
   }
 }
 
+const today = moment().format("YYYY-MM-DD");
+
 export default function Homepage({ data }) {
   const [date, setDate] = React.useState("");
   const [isFound, setIsFound] = React.useState(false);
   const [planet, setPlanet] = React.useState({});
   const [dayDiff, setDayDiff] = React.useState(null);
+  const [lastFoundFor, setLastFoundFor] = React.useState("");
+  const [invalidInput, setInvalidInput] = React.useState(false);
 
-  const nodeRef = useRef(null);
+  const isDateChanged = date !== lastFoundFor;
 
   const refAnimationInstance = useRef(null);
 
@@ -79,12 +83,23 @@ export default function Homepage({ data }) {
     });
   }, [makeShot]);
 
+  function validateInput() {
+    if (moment(date).isAfter()) {
+      setInvalidInput(true);
+      return false;
+    }
+    return true;
+  }
+
   function handleClick() {
-    if (date && !isFound) {
+    if (!validateInput()) return;
+    if ((date && !isFound) || (date && isDateChanged)) {
       const diffInDays = moment().diff(moment(date), "days");
       const planet = findBirthday(data, diffInDays);
       fire();
       setIsFound(true);
+      setInvalidInput(false);
+      setLastFoundFor(date);
       setPlanet(planet);
       setDayDiff(diffInDays);
       console.log(planet);
@@ -97,10 +112,10 @@ export default function Homepage({ data }) {
       <main className="dark text-foreground bg-background flex min-h-screen flex-col items-center justify-between ">
         <Gradient
           className={
-            "w-screen h-screen flex flex-col justify-center  content-center items-center gap-8"
+            "w-screen h-screen flex flex-col justify-center items-center p-8 text-center gap-8"
           }
         >
-          <h1 className="text-5xl text-transparent leading-tight font-semibold bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
+          <h1 className="text-5xl mb-4 text-transparent leading-tight font-semibold bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
             Is today my birthday?
           </h1>
 
@@ -111,13 +126,18 @@ export default function Homepage({ data }) {
             type="date"
             radius="medium"
             value={date}
-            // color="primary"
             onValueChange={setDate}
             variant="bordered"
             label="Date of Birth"
             placeholder="Enter your date of birth"
             className="w-[300px]"
-            max="9999-12-31"
+            isInvalid={invalidInput}
+            errorMessage={
+              invalidInput
+                ? "Unless you're a time traveller, you might wanna change your input."
+                : null
+            }
+            max={today}
             fullWidth={false}
           ></Input>
 

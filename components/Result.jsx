@@ -13,7 +13,11 @@ const Result = ({ planet, dayDiff }) => {
 
   return (
     <div className="flex flex-col gap-3 items-center">
-      <Tooltip showArrow={true} color="primary" content="Not on Earth though.">
+      <Tooltip
+        showArrow={true}
+        color="primary"
+        content="It always is. Somewhere. If you know where to look."
+      >
         <h2 className="text-3xl font-semibold">
           It <i>is</i> your birthday!*
         </h2>
@@ -28,6 +32,10 @@ const Result = ({ planet, dayDiff }) => {
           </a>
         </p>
       </div>
+      <p className="text-lg font-medium">
+        (A {planet.planet_name} year is equal to {planet.orbital_period} Earth
+        days)
+      </p>
     </div>
   );
 };
