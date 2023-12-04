@@ -129,7 +129,12 @@ export default function Homepage({ data }) {
               value={date}
               onValueChange={setDate}
               variant="bordered"
-              label="Date of Birth"
+              label={
+                <>
+                  <p className="inline">Date of Birth</p>
+                  <p className="text-slate-400/40 inline">&nbsp;(on Earth)</p>
+                </>
+              }
               placeholder="Enter your date of birth"
               className="w-[300px]"
               isInvalid={invalidInput}

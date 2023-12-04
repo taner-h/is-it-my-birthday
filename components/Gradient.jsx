@@ -1,8 +1,12 @@
 "use client";
 import React, { ReactNode } from "react";
+import { useMediaQuery } from "react-responsive";
+
+const defaultPosition = { x: 32, y: 32 };
 
 const GradientPosition = () => {
-  const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = React.useState(defaultPosition);
+  const isBigScreen = useMediaQuery({ query: "(min-width: 800px)" });
 
   React.useEffect(() => {
     const updateMousePosition = (ev) => {
@@ -14,7 +18,8 @@ const GradientPosition = () => {
     };
   }, []);
 
-  return mousePosition;
+  if (isBigScreen) return mousePosition;
+  else return defaultPosition;
 };
 
 const Gradient = ({ children, className }) => {
