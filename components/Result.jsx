@@ -46,6 +46,7 @@ const Result = ({ planet, dayDiff, isBigScreen }) => {
           } inline font-semibold`}
         >
           You turned {yearsOld} year{yearsOld > 1 ? "s" : ""} old on&nbsp;
+          {!isBigScreen && <br />}
         </p>
         <p
           className={`${
@@ -57,8 +58,13 @@ const Result = ({ planet, dayDiff, isBigScreen }) => {
           </a>
         </p>
       </div>
-      <p className={`${isBigScreen ? "text-lg" : "text-base"} font-medium`}>
-        (A year on &quot;{planet.planet_name}&quot; is equal to{" "}
+      <p
+        className={`${
+          isBigScreen ? "text-lg" : "text-base"
+        } font-medium text-white/50`}
+      >
+        (A year on &quot;{planet.planet_name}&quot; is equal to&nbsp;
+        {!isBigScreen && <br />}
         {planet.orbital_period} Earth days)
       </p>
     </div>
