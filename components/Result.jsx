@@ -41,7 +41,7 @@ const Result = ({ planet, dayDiff }) => {
       </Tooltip>
       <div>
         <p className="inline text-2xl font-semibold">
-          You turned {yearsOld} years old on&nbsp;
+          You turned {yearsOld} year{yearsOld > 1 ? "s" : ""} old on&nbsp;
         </p>
         <p className="inline text-2xl font-semibold underline hover:text-sky-500 decoration-wavy decoration-sky-500">
           <a target="_blank" rel="noopener noreferrer" href={link}>
