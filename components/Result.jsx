@@ -2,7 +2,7 @@ import React from "react";
 import { Tooltip } from "@nextui-org/react";
 import slugify from "slugify";
 
-const Result = ({ planet, dayDiff }) => {
+const Result = ({ planet, dayDiff, isBigScreen }) => {
   const [isTooltipOpen, setIsTooltipOpen] = React.useState(false);
   const [isClicked, setIsClicked] = React.useState(false);
 
@@ -32,7 +32,7 @@ const Result = ({ planet, dayDiff }) => {
             setIsClicked(!isClicked);
             setIsTooltipOpen(!isClicked);
           }}
-          className="text-3xl font-semibold"
+          className={`${isBigScreen ? "text-3xl" : "text-2xl"} font-semibold`}
         >
           Today <i>is</i> your birthday!
           <p className="inline text-sky-500">*</p>
@@ -40,16 +40,24 @@ const Result = ({ planet, dayDiff }) => {
         </h2>
       </Tooltip>
       <div>
-        <p className="inline text-2xl font-semibold">
+        <p
+          className={`${
+            isBigScreen ? "text-2xl" : "text-xl"
+          } inline font-semibold`}
+        >
           You turned {yearsOld} year{yearsOld > 1 ? "s" : ""} old on&nbsp;
         </p>
-        <p className="inline text-2xl font-semibold underline hover:text-sky-500 decoration-wavy decoration-sky-500">
+        <p
+          className={`${
+            isBigScreen ? "text-2xl" : "text-xl"
+          } inline font-semibold underline hover:text-sky-500 decoration-wavy decoration-sky-500`}
+        >
           <a target="_blank" rel="noopener noreferrer" href={link}>
             {planet.planet_name}
           </a>
         </p>
       </div>
-      <p className="text-lg font-medium">
+      <p className={`${isBigScreen ? "text-lg" : "text-base"} font-medium`}>
         (A year on &quot;{planet.planet_name}&quot; is equal to{" "}
         {planet.orbital_period} Earth days)
       </p>

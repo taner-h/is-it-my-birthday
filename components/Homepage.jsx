@@ -6,7 +6,7 @@ import ReactCanvasConfetti from "react-canvas-confetti";
 import { Input, NextUIProvider, Button, Card } from "@nextui-org/react";
 import moment from "moment/moment";
 import Result from "./Result";
-import { CSSTransition } from "react-transition-group";
+import { useMediaQuery } from "react-responsive";
 
 const canvasStyles = {
   position: "fixed",
@@ -36,6 +36,8 @@ export default function Homepage({ data }) {
   const [dayDiff, setDayDiff] = React.useState(null);
   const [lastFoundFor, setLastFoundFor] = React.useState("");
   const [invalidInput, setInvalidInput] = React.useState(false);
+
+  const isBigScreen = useMediaQuery({ query: "(min-width: 800px)" });
 
   const isDateChanged = date !== lastFoundFor;
 
@@ -116,11 +118,21 @@ export default function Homepage({ data }) {
               "w-screen h-[calc(100dvh)] flex flex-col justify-center items-center p-8 text-center gap-8"
             }
           >
-            <h1 className="text-5xl mb-4 text-transparent leading-tight font-semibold bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
+            <h1
+              className={`${
+                isBigScreen ? "text-5xl" : "text-4xl"
+              } mb-4 text-transparent leading-tight font-semibold bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500`}
+            >
               Is it my birthday?
             </h1>
 
-            {isFound && <Result planet={planet} dayDiff={dayDiff} />}
+            {isFound && (
+              <Result
+                planet={planet}
+                dayDiff={dayDiff}
+                isBigScreen={isBigScreen}
+              />
+            )}
 
             <Input
               size="lg"
