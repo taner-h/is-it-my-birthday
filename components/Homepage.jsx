@@ -7,6 +7,7 @@ import { Input, NextUIProvider, Button, Card } from "@nextui-org/react";
 import moment from "moment/moment";
 import Result from "./Result";
 import { useMediaQuery } from "react-responsive";
+import { useSearchParams } from "next/navigation";
 
 const canvasStyles = {
   position: "fixed",
@@ -34,7 +35,10 @@ function isDateValid(slug) {
   return moment(slug, "YYYY-MM-DD").isValid();
 }
 
-export default function Homepage({ data, slug }) {
+export default function Homepage({ data }) {
+  const searchParams = useSearchParams();
+  const slug = searchParams.get("q");
+
   const [date, setDate] = React.useState(isDateValid(slug) ? slug : "");
   const [isFound, setIsFound] = React.useState(false);
   const [planet, setPlanet] = React.useState({});
