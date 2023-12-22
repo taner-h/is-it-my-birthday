@@ -7,7 +7,6 @@ import { Input, NextUIProvider, Button, Card } from "@nextui-org/react";
 import moment from "moment/moment";
 import Result from "./Result";
 import { useMediaQuery } from "react-responsive";
-import { useRouter } from "next/navigation";
 
 const canvasStyles = {
   position: "fixed",
@@ -31,9 +30,10 @@ function findBirthday(data, days) {
 const today = moment().format("YYYY-MM-DD");
 
 function isDateValid(slug) {
-  if (moment(slug, "YYYY-MM-DD").isValid()) return true;
-  else return false;
+  if (!slug) return false;
+  return moment(slug, "YYYY-MM-DD").isValid();
 }
+
 export default function Homepage({ data, slug }) {
   const [date, setDate] = React.useState(isDateValid(slug) ? slug : "");
   const [isFound, setIsFound] = React.useState(false);
@@ -47,8 +47,6 @@ export default function Homepage({ data, slug }) {
   const isDateChanged = date !== lastFoundFor;
 
   const refAnimationInstance = useRef(null);
-
-  console.log(slug);
 
   const getInstance = useCallback((instance) => {
     refAnimationInstance.current = instance;
