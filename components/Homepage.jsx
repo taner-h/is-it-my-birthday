@@ -128,9 +128,14 @@ export default function Homepage({ data }) {
   function handleClick() {
     if (!validateInput()) return;
     if ((date && !isFound) || (date && isDateChanged)) {
-      router.push("/" + "?" + createQueryString("q", date), undefined, {
-        shallow: true,
-      });
+      // router.push("/" + "?" + createQueryString("q", date), undefined, {
+      //   shallow: true,
+      // });
+      window.history.pushState(
+        {},
+        "",
+        window.location.pathname + "?" + createQueryString("q", date)
+      );
       const diffInDays = moment().diff(moment(date), "days");
       const planet = findBirthday(data, diffInDays);
       fire();
